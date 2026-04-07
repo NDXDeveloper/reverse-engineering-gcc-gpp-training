@@ -1,0 +1,54 @@
+MIT License
+
+Copyright (c) 2025-2026 [Nicolas DEOUX / NDXDeveloper]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Ethical Disclaimer
+
+This repository is published for **strictly educational and ethical purposes**.
+
+All content, binaries, code samples and techniques presented in this course
+are intended exclusively for:
+
+- Learning reverse engineering within a legal framework
+- Security auditing of software you authored or for which you have explicit
+  written authorization
+- Defensive cybersecurity research
+- Participation in legal CTF (Capture The Flag) challenges
+
+**The following uses are strictly prohibited:**
+
+- Analyzing, modifying or attacking commercial software without authorization
+- Creating or distributing malware, ransomware or any malicious software
+- Bypassing protection mechanisms outside of a legally authorized context
+- Any activity that violates the laws applicable in your jurisdiction
+  (including but not limited to the CFAA in the United States, EU Directive
+  2009/24/EC, and equivalent national legislation)
+
+The malicious code samples included in this repository (Part VI) are
+**intentionally limited educational prototypes**, designed to be analyzed
+exclusively in isolated environments (sandbox/VM). They must **never** be
+executed on production systems or outside of a sandboxed test environment.
+
+The author assumes no responsibility for any malicious, illegal or
+unauthorized use of the content provided herein. The user is solely
+responsible for compliance with all applicable laws in their jurisdiction.

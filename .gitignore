@@ -1,0 +1,100 @@
+# ===========================================================================
+#  .gitignore — Formation Reverse Engineering (GCC/G++)
+#
+#  Exclut les fichiers générés par la compilation, les tests et les outils.
+#  Les sources (.c, .cpp, .rs, .go, .cs, .py, .js), les Makefiles,
+#  les .md et les fichiers de configuration sont versionnés.
+# ===========================================================================
+
+# ── Binaires compilés (produits par make) ──────────────────────────────────
+# Chaque Makefile produit des variantes *_O0, *_O2, *_strip, etc.
+# On exclut par pattern plutôt que par nom pour couvrir tous les chapitres.
+
+binaries/ch*/keygenme_*
+!binaries/ch*/keygenme_*.c
+binaries/ch*/oop_*
+!binaries/ch*/oop_*.cpp
+binaries/ch*/server_*
+!binaries/ch*/server_*.c
+binaries/ch*/client_*
+!binaries/ch*/client_*.c
+binaries/ch*/crypto_*
+!binaries/ch*/crypto_*.c
+binaries/ch*/fileformat_*
+!binaries/ch*/fileformat_*.c
+binaries/ch*/ransomware_*
+!binaries/ch*/ransomware_*.c
+binaries/ch*/dropper_*
+!binaries/ch*/dropper_*.c
+binaries/ch*/packed_sample_*
+!binaries/ch*/packed_sample_*.c
+
+# ── Répertoires de build ───────────────────────────────────────────────────
+binaries/ch23-network/build/
+binaries/ch25-fileformat/samples/
+binaries/ch22-oop/plugins/
+
+# ── Fichiers générés par les binaires ──────────────────────────────────────
+binaries/ch24-crypto/secret.txt
+binaries/ch24-crypto/secret.txt.enc
+binaries/ch24-crypto/secret.enc
+/tmp/test/
+
+# ── .NET (obj, bin, NuGet caches) ─────────────────────────────────────────
+binaries/ch32-dotnet/**/bin/
+binaries/ch32-dotnet/**/obj/
+
+# ── Rust (target/) ─────────────────────────────────────────────────────────
+binaries/ch33-rust/crackme_rust/target/
+
+# ── Go (binaires compilés) ─────────────────────────────────────────────────
+binaries/ch34-go/crackme_go/crackme_go
+
+# ── Fichiers .locked produits par le ransomware (ch27) ─────────────────────
+*.locked
+README_LOCKED.txt
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.mypy_cache/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# ── Éditeurs et IDE ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── GDB ────────────────────────────────────────────────────────────────────
+.gdb_history
+core
+core.*
+
+# ── Ghidra (projets locaux) ───────────────────────────────────────────────
+*.gpr
+*.rep/
+*.lock
+
+# ── ImHex (projets locaux) ────────────────────────────────────────────────
+*.hexproj
+
+# ── Captures réseau ───────────────────────────────────────────────────────
+*.pcap
+*.pcapng
+
+# ── Archives de samples (convention malware analysis) ─────────────────────
+*.zip.malware
+*.infected
+
+# ── Fichiers temporaires de formation ─────────────────────────────────────
+/tmp/formation/
