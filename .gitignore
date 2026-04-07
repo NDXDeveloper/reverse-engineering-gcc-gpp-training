@@ -1,72 +1,62 @@
 # ===========================================================================
-#  .gitignore — Formation Reverse Engineering (GCC/G++)
+#  .gitignore — Reverse Engineering Training (GCC/G++)
 #
-#  Exclut les fichiers générés par la compilation, les tests et les outils.
-#  Les sources (.c, .cpp, .rs, .go, .cs, .py, .js), les Makefiles,
-#  les .md et les fichiers de configuration sont versionnés.
+#  Strategy: ignore EVERYTHING in binaries/ then re-include
+#  only sources, Makefiles and config files.
+#  This is the most robust method — any newly compiled binary
+#  will be automatically ignored.
 # ===========================================================================
 
-# ── Binaires compilés (produits par make) ──────────────────────────────────
-# Chaque Makefile produit des variantes *_O0, *_O2, *_strip, etc.
-# On exclut par pattern plutôt que par nom pour couvrir tous les chapitres.
+# ── BINARIES: ignore all then re-include sources ────────────────────────
 
-binaries/ch*/keygenme_*
-!binaries/ch*/keygenme_*.c
-binaries/ch*/oop_*
-!binaries/ch*/oop_*.cpp
-binaries/ch*/server_*
-!binaries/ch*/server_*.c
-binaries/ch*/client_*
-!binaries/ch*/client_*.c
-binaries/ch*/crypto_*
-!binaries/ch*/crypto_*.c
-binaries/ch*/fileformat_*
-!binaries/ch*/fileformat_*.c
-binaries/ch*/ransomware_*
-!binaries/ch*/ransomware_*.c
-binaries/ch*/dropper_*
-!binaries/ch*/dropper_*.c
-binaries/ch*/packed_sample_*
-!binaries/ch*/packed_sample_*.c
+# Step 1: ignore everything in binaries/
+binaries/**
 
-# ── Répertoires de build ───────────────────────────────────────────────────
-binaries/ch23-network/build/
-binaries/ch25-fileformat/samples/
-binaries/ch22-oop/plugins/
+# Step 2: re-include directories (required for traversal)
+!binaries/
+!binaries/*/
+!binaries/**/
 
-# ── Fichiers générés par les binaires ──────────────────────────────────────
-binaries/ch24-crypto/secret.txt
-binaries/ch24-crypto/secret.txt.enc
-binaries/ch24-crypto/secret.enc
-/tmp/test/
+# Step 3: re-include source and config files
+!binaries/Makefile
+!binaries/*/Makefile
+!binaries/**/*.c
+!binaries/**/*.cpp
+!binaries/**/*.h
+!binaries/**/*.cs
+!binaries/**/*.csproj
+!binaries/**/*.rs
+!binaries/**/*.go
+!binaries/**/go.mod
+!binaries/**/go.sum
+!binaries/**/Cargo.toml
+!binaries/**/Cargo.lock
+!binaries/**/*.json
+!binaries/**/*.md
 
-# ── .NET (obj, bin, NuGet caches) ─────────────────────────────────────────
-binaries/ch32-dotnet/**/bin/
-binaries/ch32-dotnet/**/obj/
-
-# ── Rust (target/) ─────────────────────────────────────────────────────────
-binaries/ch33-rust/crackme_rust/target/
-
-# ── Go (binaires compilés) ─────────────────────────────────────────────────
-binaries/ch34-go/crackme_go/crackme_go
-
-# ── Fichiers .locked produits par le ransomware (ch27) ─────────────────────
+# ── .locked files produced by the ransomware (ch27) ─────────────────────
 *.locked
 README_LOCKED.txt
 
-# ── Python ─────────────────────────────────────────────────────────────────
+# ── .NET (obj, bin, NuGet caches) — in case re-included by mistake ─────
+**/obj/
+**/bin/Release/
+**/bin/Debug/
+
+# ── Rust ─────────────────────────────────────────────────────────────────
+**/target/
+
+# ── Python ───────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
 .mypy_cache/
 .pytest_cache/
 *.egg-info/
-dist/
-build/
 venv/
 .venv/
 
-# ── Éditeurs et IDE ───────────────────────────────────────────────────────
+# ── Editors and IDEs ────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
@@ -75,26 +65,22 @@ venv/
 .DS_Store
 Thumbs.db
 
-# ── GDB ────────────────────────────────────────────────────────────────────
+# ── GDB ──────────────────────────────────────────────────────────────────
 .gdb_history
 core
 core.*
 
-# ── Ghidra (projets locaux) ───────────────────────────────────────────────
+# ── Ghidra (local projects) ─────────────────────────────────────────────
 *.gpr
 *.rep/
-*.lock
 
-# ── ImHex (projets locaux) ────────────────────────────────────────────────
+# ── ImHex (local projects) ──────────────────────────────────────────────
 *.hexproj
 
-# ── Captures réseau ───────────────────────────────────────────────────────
+# ── Network captures ────────────────────────────────────────────────────
 *.pcap
 *.pcapng
 
-# ── Archives de samples (convention malware analysis) ─────────────────────
+# ── Sample archives (malware analysis convention) ───────────────────────
 *.zip.malware
 *.infected
-
-# ── Fichiers temporaires de formation ─────────────────────────────────────
-/tmp/formation/
