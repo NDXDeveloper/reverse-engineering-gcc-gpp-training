@@ -1,0 +1,40 @@
+[package]
+name = "crackme_rust"
+version = "0.33.0"
+edition = "2021"
+authors = ["Formation RE — Chapitre 33"]
+description = "Crackme Rust pour la formation Reverse Engineering (chaîne GNU)"
+
+# Pas de dépendances externes : tout repose sur la stdlib.
+# Cela illustre le fait que même sans crates tierces,
+# le binaire embarque une quantité massive de code (stdlib linkée statiquement).
+[dependencies]
+
+# ── Profil debug ──────────────────────────────────────────────
+# Symboles complets, pas d'optimisation.
+# Produit le binaire le plus lisible en RE (noms de fonctions, DWARF complet).
+[profile.dev]
+opt-level = 0
+debug = true          # DWARF complet
+strip = false
+
+# ── Profil release ────────────────────────────────────────────
+# Optimisé mais avec symboles — utile pour apprendre les patterns
+# optimisés avant de passer au strippé.
+[profile.release]
+opt-level = 3
+debug = true          # On garde les symboles DWARF en release
+strip = false
+lto = false           # Pas de LTO pour garder les frontières de fonctions visibles
+panic = "unwind"      # Garde le mécanisme d'unwind (visible en RE : .eh_frame)
+
+# ── Profil release strippé (custom) ──────────────────────────
+# Cas réaliste : optimisé, pas de symboles, LTO activé.
+# C'est le profil le plus difficile à reverser.
+[profile.release-strip]
+inherits = "release"
+debug = false
+strip = true          # strip -s équivalent
+lto = true            # Link-Time Optimization — fusionne les crates
+panic = "abort"       # Élimine le code d'unwind → binaire plus petit mais moins d'indices
+codegen-units = 1     # Meilleures optimisations globales
